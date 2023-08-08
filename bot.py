@@ -35,7 +35,7 @@ def run_discord_bot():
 
     @client.tree.command(name="ping")
     async def ping(interaction: discord.Interaction):
-        await interaction.response.send_message(f'Pong!')
+        await interaction.response.send_message("Pong!")
 
     @client.tree.command(name="team_weakness")
     @app_commands.describe(team = "Tells you the strengths and weakness's of your team")
@@ -47,7 +47,8 @@ def run_discord_bot():
     async def east_all_stars(interaction: discord.Interaction):
         #await interaction.response.send_message("Done")
         east = JSON.eastAllStars()
-        await interaction.response.send_message(east)
+        embed = discord.Embed(title="East All-Stars", description=east)
+        await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="west_all_stars")
     async def west_all_stars(interaction: discord.Interaction):
