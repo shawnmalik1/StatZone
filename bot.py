@@ -54,7 +54,8 @@ def run_discord_bot():
     async def west_all_stars(interaction: discord.Interaction):
         #await interaction.response.send_message("Done")
         west = JSON.westAllStars()
-        await interaction.response.send_message(west)
+        embed = discord.Embed(title="West All-Stars", description=west)
+        await interaction.response.send_message(embeds=[embed])
 
 
     client.run(TOKEN)
