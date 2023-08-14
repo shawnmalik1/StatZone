@@ -43,18 +43,11 @@ def run_discord_bot():
         await interaction.response.send_message("Done")
         #await interaction.response.send_message(JSON.load_data())
 
-    @client.tree.command(name="east_all_stars")
+    @client.tree.command(name="all_stars")
     async def east_all_stars(interaction: discord.Interaction):
         #await interaction.response.send_message("Done")
-        east = JSON.eastAllStars()
-        embed = discord.Embed(title="East All-Stars", description=east)
-        await interaction.response.send_message(embeds=[embed])
-
-    @client.tree.command(name="west_all_stars")
-    async def west_all_stars(interaction: discord.Interaction):
-        #await interaction.response.send_message("Done")
-        west = JSON.westAllStars()
-        embed = discord.Embed(title="West All-Stars", description=west)
+        allstars = JSON.eastAllStars() + JSON.westAllStars()
+        embed = discord.Embed(title="Current All-Stars: ", description=allstars)
         await interaction.response.send_message(embeds=[embed])
 
 
