@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import responses
-import commands
+import commands_json
 
 async def send_message(message, user_message):
     try:
@@ -15,7 +15,8 @@ async def send_message(message, user_message):
 
 
 def run_discord_bot():
-    TOKEN = "MTEzNjEzMDkwNzk0MjY5NDkxMg.G-gBZr.E2zUxgMw5TBMuowTFcgN6QdoOu2Mkn5OFDWNyk"
+    with open("env", "r") as file:
+        TOKEN = file.readline()
     client = commands.Bot(command_prefix= "!", intents = discord.Intents.all())
     @client.event
     async def on_ready():
@@ -33,20 +34,20 @@ def run_discord_bot():
     @client.tree.command(name="all_stars")
     async def all_stars(interaction: discord.Interaction):
         #await interaction.response.send_message("Done")
-        allstars = JSON.allStars()
+        allstars = commands_json.allStars()
         embed = discord.Embed(title="Current All-Stars: ", description=allstars)
         await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="find_player")
     @app_commands.describe(player="Returns the season stats for a given player")
     async def find_player(interaction: discord.Interaction, player: str):
-        player_stats = JSON.findPlayer(player)
+        player_stats = commands_json.findPlayer(player)
         embed = discord.Embed(title=f"Player Stats for {player}: ", description=player_stats)
         await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="player_strengths_weaknesses")
     async def player_strengths_weakness(interaction: discord.Interaction, player: str):
-        playerInfo = JSON.player_strength_and_weakness(player)
+        playerInfo = commands_json.player_strength_and_weakness(player)
         embed = discord.Embed(title=f"Player Strength and Weakness's for {player}: ", description=playerInfo)
         await interaction.response.send_message(embeds=[embed])
 
@@ -69,7 +70,7 @@ def run_discord_bot():
         app_commands.Choice(name="Rebounding", value="reb"),
     ])
     async def filter_by_stat(interaction: discord.Interaction, stat: discord.app_commands.Choice[str], threshold: int):
-        statInfo = JSON.filter_by_stat(stat.value, threshold)
+        statInfo = commands_json.filter_by_stat(stat.value, threshold)
         embed = discord.Embed(title=f"Players with {stat.name} above {threshold}: ", description=statInfo)
         await interaction.response.send_message(embeds=[embed])
 

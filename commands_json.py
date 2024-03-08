@@ -103,10 +103,6 @@ def player_strength_and_weakness(playerName):
             elif int(value) <= weakness_threshold:
                 weaknesses.append(map[attr])
 
-        # Print strengths and weaknesses
-
-        skills = ['Height', 'Strength', 'Speed', 'Jump', 'Endurance', 'Inside Scoring', 'Dunking', 'Free Throw',
-                  'Midrange', 'Three Point', 'Defensive IQ', 'Offensive IQ', 'Dribbling', 'Passing', 'Rebounding']
         strengthsStr = "";
         if(len(strengths) == 0):
             strengthsStr = "Nothing, dude is a BUM"
