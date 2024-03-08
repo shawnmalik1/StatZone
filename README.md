@@ -35,3 +35,7 @@ This project is licensed under the [MIT License](./LICENSE)
 ## Help 🛠️
 
 * If you run into any issues or have any bugs to report, feel free to contact me on Discord @shawnthegoat24
+
+## Next Steps 👀
+- Implementing trade evaluation!
+- FuzzySearch implementation
