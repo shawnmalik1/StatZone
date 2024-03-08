@@ -15,7 +15,7 @@ async def send_message(message, user_message):
 
 
 def run_discord_bot():
-    with open("env", "r") as file:
+    with open(".env", "r") as file:
         TOKEN = file.readline()
     client = commands.Bot(command_prefix= "!", intents = discord.Intents.all())
     @client.event

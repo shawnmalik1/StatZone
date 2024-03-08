@@ -42,7 +42,7 @@ def findPlayer(given_player) -> str:
             rpg = round((float((playerData['orb'] +playerData['drb']))/playerData['gp']), 2)
             spg = round((float(playerData['stl'])/playerData['gp']), 2)
             bpg = round((float(playerData['blk'])/playerData['gp']), 2)
-            ewa =  round(float(playerData['ewa']), 2)
+            ewa = round(float(playerData['ewa']), 2)
             per = round(float(playerData['per']), 2)
             fg = round((100 * float(playerData['fg'] / playerData['fga'])), 2)
             tp = round((100 * float(playerData['tp'] / playerData['tpa'])), 2)
