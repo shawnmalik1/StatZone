@@ -19,7 +19,7 @@ find all players who have a Passing rating above 90.
 ## Technologies 🖥️
 StatZone was developed using the following technologies:
 - Python
-- Discord Integration
+- Discord API
 
 ### Dependencies 🤖
 
@@ -30,7 +30,7 @@ StatZone was developed using the following technologies:
 
 ## License 📝
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the [MIT License](./LICENSE)
 
 ## Help 🛠️
 
