@@ -3,9 +3,5 @@ def handle_response(message) -> str:
 
     if p_message == "ping":
         return "Pong!"
-
-    if p_message == "!help":
-        return "help message"
-
     else:
-        return "hello!"
+        return "Invalid command!"
