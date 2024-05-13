@@ -1,6 +1,6 @@
 # StatZone 📈
 
-StatZone is an NBA Utility Stat bot meant to bring ease of access and statistics to Discord. Now you can look up a player's stats or strengths and weaknesses without leaving your application or server! StatZone is in its beta phases and is currently set up to work with the NBAC BBGM Server, which is set to the 2015 NBA season.
+StatZone is an NBA Utility Stat bot meant to bring ease of access and statistics to Discord. Now you can look up a player's stats or strengths and weaknesses without leaving your application or server! StatZone is in its beta phases and is currently set up to work with the NBAC BBGM Server, which is set to the 2019 NBA season.
 
 ## Description 🏀
 
