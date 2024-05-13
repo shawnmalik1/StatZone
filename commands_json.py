@@ -1,11 +1,14 @@
 import json
+import allStars
+import findStatsByPlayer
 
 
 # Retrieve JSON data from the file
-with open("2015FantasyDraft.json", "r") as file:
+with open("2019LeagueFile.json", "r") as file:
     data = json.load(file)
 
 def allStars() -> str:
+    allStars.findAllStars(data)
     # Access and process the retrieved JSON data
     allstars_east = data["allStars"][-1]["teams"][0]
     east_all_stars = []
@@ -72,7 +75,7 @@ def player_strength_and_weakness(playerName):
         attributes = target_player['ratings'][-1]
 
         # Define attribute thresholds for strengths and weaknesses
-        strength_threshold = 60
+        strength_threshold = 65
         weakness_threshold = 40
 
         # Analyze strengths and weaknesses
@@ -98,18 +101,18 @@ def player_strength_and_weakness(playerName):
         for attr, value in attributes.items():
             if(attr == 'season'):
                 break;
-            if int(value) >= strength_threshold:
+            if attr in map and int(value) >= strength_threshold:
                 strengths.append(map[attr])
-            elif int(value) <= weakness_threshold:
+            elif attr in map and int(value) <= weakness_threshold:
                 weaknesses.append(map[attr])
 
-        strengthsStr = "";
+        strengthsStr = ""
         if(len(strengths) == 0):
             strengthsStr = "Nothing, dude is a BUM"
         for element in strengths:
             strengthsStr += element + "\n"
 
-        weaknessesStr = "";
+        weaknessesStr = ""
         for element in weaknesses:
             weaknessesStr += element + "\n"
 
