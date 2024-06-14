@@ -31,17 +31,17 @@ def run_discord_bot():
     async def ping(interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
 
-    @client.tree.command(name="all_stars")
+    @client.tree.command(name="allstars")
     async def all_stars(interaction: discord.Interaction):
         #await interaction.response.send_message("Done")
         allstars = commands_json.allStars()
         embed = discord.Embed(title="Current All-Stars: ", description=allstars)
         await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="find_player")
+    @client.tree.command(name="playerstats")
     @app_commands.describe(player="Returns the season stats for a given player")
-    async def find_player(interaction: discord.Interaction, player: str):
-        player_stats = commands_json.findPlayer(player)
+    async def player_stats(interaction: discord.Interaction, player: str):
+        player_stats = commands_json.playerStats(player)
         embed = discord.Embed(title=f"Player Stats for {player}: ", description=player_stats)
         await interaction.response.send_message(embeds=[embed])
 
@@ -51,7 +51,7 @@ def run_discord_bot():
         embed = discord.Embed(title=f"Player Strength and Weakness's for {player}: ", description=playerInfo)
         await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="filter_by_stat")
+    @client.tree.command(name="filterbystat")
     @app_commands.describe(stat="Choose the stat you want to filter by", threshold="Choose the min threshold")
     @app_commands.choices(stat=[
         app_commands.Choice(name="Height", value="hgt"),

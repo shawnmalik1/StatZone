@@ -1,14 +1,22 @@
 import json
 import allStars
 import findStatsByPlayer
+from textblob import TextBlob
 
 
 # Retrieve JSON data from the file
-with open("2019LeagueFile.json", "r") as file:
+with open("2020Season.json", "r") as file:
     data = json.load(file)
 
+# Streamline Player Display & Finding
+players = data["players"]
+for player in players:
+    if player['lastName'].find(' (PO)') != -1:
+        player['lastName'] = player['lastName'].replace(' (PO)', '')
+    if player['lastName'].find(' (TO)') != -1:
+        player['lastName'] = player['lastName'].replace(' (TO)', '')
+
 def allStars() -> str:
-    allStars.findAllStars(data)
     # Access and process the retrieved JSON data
     allstars_east = data["allStars"][-1]["teams"][0]
     east_all_stars = []
@@ -30,42 +38,46 @@ def allStars() -> str:
 
     return (f"\n **East All Stars:** \n {strEastAllStar} \n **West All Stars:** \n {strWestAllStar}")
 
-def findPlayer(given_player) -> str:
+def playerStats(given_player) -> str:
     # Access and process the retrieved JSON data
-    players = data["players"]
-    teams = data["teams"]
+    #teams = data["teams"]
 
     for player in players:
         if player["firstName"] + " " + player['lastName'] == given_player:
             if(not player['stats']):
                 return "Player is a rookie! Has not played a game yet."
-            playerData = player['stats'][-1]
-            ppg = round((float(playerData['pts'])/playerData['gp']), 2)
-            apg = round((float(playerData['ast'])/playerData['gp']), 2)
-            rpg = round((float((playerData['orb'] +playerData['drb']))/playerData['gp']), 2)
-            spg = round((float(playerData['stl'])/playerData['gp']), 2)
-            bpg = round((float(playerData['blk'])/playerData['gp']), 2)
-            ewa = round(float(playerData['ewa']), 2)
-            per = round(float(playerData['per']), 2)
-            fg = round((100 * float(playerData['fg'] / playerData['fga'])), 2)
-            tp = round((100 * float(playerData['tp'] / playerData['tpa'])), 2)
-            statsStr = f'**PPG: **' + str(ppg) + "\n" + \
-                       f'**APG: **' + str(apg) + "\n" + \
-                       f'**RPG: **' + str(rpg) + "\n" + \
-                       f'**SPG: **' + str(spg) + "\n" + \
-                       f'**BPG: **' + str(bpg) + "\n" + \
-                       f'**EWA: **' + str(ewa) + "\n" + \
-                       f'**PER: **' + str(per) + "\n" + \
-                       f'**FG%: **' + str(fg) + "\n" + \
-                       f'**3PT%: **' + str(tp) + "\n"
-            return f'{statsStr}'
+            try:
+                playerData = player['stats'][-1]
+                ppg = round((float(playerData['pts']) / playerData['gp']), 2)
+                apg = round((float(playerData['ast']) / playerData['gp']), 2)
+                rpg = round((float((playerData['orb'] + playerData['drb'])) / playerData['gp']), 2)
+                spg = round((float(playerData['stl']) / playerData['gp']), 2)
+                bpg = round((float(playerData['blk']) / playerData['gp']), 2)
+                ewa = round(float(playerData['ewa']), 2)
+                per = round(float(playerData['per']), 2)
+                fg = round((100 * float(playerData['fg'] / playerData['fga'])), 2)
+                tp = round((100 * float(playerData['tp'] / playerData['tpa'])), 2)
+                statsStr = f'**Position: **' + player['pos'] + "\n" + \
+                           f'**PPG: **' + str(ppg) + "\n" + \
+                           f'**APG: **' + str(apg) + "\n" + \
+                           f'**RPG: **' + str(rpg) + "\n" + \
+                           f'**SPG: **' + str(spg) + "\n" + \
+                           f'**BPG: **' + str(bpg) + "\n" + \
+                           f'**EWA: **' + str(ewa) + "\n" + \
+                           f'**PER: **' + str(per) + "\n" + \
+                           f'**FG%: **' + str(fg) + "\n" + \
+                           f'**3PT%: **' + str(tp) + "\n"
+                return f'{statsStr}'
+            except ZeroDivisionError:
+                return "Has not played a game this season."
+
 
     return f'Player not found.'
 
 def player_strength_and_weakness(playerName):
     # Find the player's data using the player_name
     target_player = None
-    for player in data['players']:
+    for player in players:
         if (player['firstName'] + " " + player['lastName']) == playerName:
             target_player = player
             break
@@ -108,7 +120,7 @@ def player_strength_and_weakness(playerName):
 
         strengthsStr = ""
         if(len(strengths) == 0):
-            strengthsStr = "Nothing, dude is a BUM"
+            strengthsStr = "Nothing"
         for element in strengths:
             strengthsStr += element + "\n"
 
