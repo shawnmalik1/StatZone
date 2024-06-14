@@ -6,10 +6,10 @@ StatZone is an NBA Utility Stat bot meant to bring ease of access and statistics
 
 StatZone has a lot of capabilities and commands that you can use.
 - ```ping```: Tells you if the bot is online and functional!
-- ```playerStats```: The find_player command will print out all the stats a player has averaged through a season, including but not limited to PPG, APG, RPG, and PER.
+- ```playerStats```: Prints out all the stats a player has averaged through a season, including but not limited to PPG, APG, RPG, and PER.
 - ```filterByStat```: Allows you to filter through the player_database based on a specific attribute and threshold. For example, if you are looking for elite passers, you can use this command to
 find all players who have a Passing rating above 90.
-- ```player_strengths_weaknesses```: Given a player, returns their strengths and their weaknesses
+- ```player_strengths_weaknesses```: Given a player, returns their strengths and their weaknesses. Especially useful to scout a draft class.
 - ```allStars```: Returns the all-stars for the current year
 
 <img width="480" alt="StatZoneDemoSW" src="https://github.com/shawnmalik1/StatZone/assets/29494485/ec7db7f7-0faa-42c7-8c6c-85734c48c295">
