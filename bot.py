@@ -27,7 +27,7 @@ def run_discord_bot():
         except Exception as e:
             print(e)
 
-    @client.tree.command(name="ping")
+    @client.tree.command(name="ping", description="Check if the bot is online")
     async def ping(interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
 
@@ -38,20 +38,20 @@ def run_discord_bot():
     #     embed = discord.Embed(title="Current All-Stars: ", description=allstars)
     #     await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="playerstats")
+    @client.tree.command(name="playerstats", description="Get the season stats for a given player")
     @app_commands.describe(player="Returns the season stats for a given player")
     async def player_stats(interaction: discord.Interaction, player: str):
         player_stats = commands_json.playerStats(player)
         embed = discord.Embed(title=f"Player Stats for {player}: ", description=player_stats)
         await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="player_strengths_weaknesses")
+    @client.tree.command(name="player_strengths_weaknesses", description="Find players strengths and weaknesses")
     async def player_strengths_weakness(interaction: discord.Interaction, player: str):
         playerInfo = commands_json.player_strength_and_weakness(player)
         embed = discord.Embed(title=f"Player Strength and Weakness's for {player}: ", description=playerInfo)
         await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="filterbystat")
+    @client.tree.command(name="filterbystat", description="Find players with a stat above a certain threshold")
     @app_commands.describe(stat="Choose the stat you want to filter by", threshold="Choose the min threshold")
     @app_commands.choices(stat=[
         app_commands.Choice(name="Height", value="hgt"),
@@ -74,7 +74,7 @@ def run_discord_bot():
         embed = discord.Embed(title=f"Players with {stat.name} above {threshold}: ", description=statInfo)
         await interaction.response.send_message(embeds=[embed])
 
-    @client.tree.command(name="roster")
+    @client.tree.command(name="roster", description="Get the roster for a specific NBA team")
     async def roster(interaction: discord.Interaction, team_name: str):
         team_roster = commands_json.roster(team_name)
         embed = discord.Embed(title=f"2024 NBA Roster for the {team_name}: ", description=team_roster)
