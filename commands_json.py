@@ -1,11 +1,10 @@
 import json
 import allStars
 import findStatsByPlayer
-from textblob import TextBlob
 
 
 # Retrieve JSON data from the file
-with open("2020Season.json", "r") as file:
+with open("2024 NBA League.json", "r") as file:
     data = json.load(file)
 
 # Streamline Player Display & Finding
@@ -85,7 +84,6 @@ def player_strength_and_weakness(playerName):
     if target_player:
         # Extract player's attributes
         attributes = target_player['ratings'][-1]
-
         # Define attribute thresholds for strengths and weaknesses
         strength_threshold = 65
         weakness_threshold = 40
@@ -111,8 +109,6 @@ def player_strength_and_weakness(playerName):
             "reb": "Rebounding"
         }
         for attr, value in attributes.items():
-            if(attr == 'season'):
-                break;
             if attr in map and int(value) >= strength_threshold:
                 strengths.append(map[attr])
             elif attr in map and int(value) <= weakness_threshold:
@@ -125,6 +121,8 @@ def player_strength_and_weakness(playerName):
             strengthsStr += element + "\n"
 
         weaknessesStr = ""
+        if(len(weaknesses) == 0):
+            weaknessesStr = "Nothing"
         for element in weaknesses:
             weaknessesStr += element + "\n"
 
@@ -150,6 +148,49 @@ def filter_by_stat(stat, threshold):
     for i in range(len(players)):
         playersStr += players[i] + "\n"
     return (f'\n **Players with {stat} above {threshold}:** \n {playersStr}')
+
+def roster(team_name):
+    roster = []
+    teamMap = {
+        "hawks": 0,
+        "celtics": 1,
+        "nets": 2,
+        "hornets": 3,
+        "bulls": 4,
+        "cavaliers": 5,
+        "mavericks": 6,
+        "nuggets": 7,
+        "pistons": 8,
+        "warriors": 9,
+        "rockets": 10,
+        "pacers": 11,
+        "clippers": 12,
+        "lakers": 13,
+        "grizzlies": 14,
+        "heat": 15,
+        "bucks": 16,
+        "timberwolves": 17,
+        "pelicans": 18,
+        "knicks": 19,
+        "thunder": 20,
+        "magic": 21,
+        "76ers": 22,
+        "suns": 23,
+        "blazers": 24,
+        "kings": 25,
+        "spurs": 26,
+        "raptors": 27,
+        "jazz": 28,
+        "wizards": 29
+    }
+    team_name = team_name.lower()
+    for player in players:
+        if player['tid'] == teamMap[team_name]:
+            roster.append(player['firstName'] + " " + player['lastName'])
+    rosterStr = ""
+    for i in range(len(roster)):
+        rosterStr += roster[i] + "\n"
+    return rosterStr
 
 
 

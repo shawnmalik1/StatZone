@@ -31,12 +31,12 @@ def run_discord_bot():
     async def ping(interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
 
-    @client.tree.command(name="allstars")
-    async def all_stars(interaction: discord.Interaction):
-        #await interaction.response.send_message("Done")
-        allstars = commands_json.allStars()
-        embed = discord.Embed(title="Current All-Stars: ", description=allstars)
-        await interaction.response.send_message(embeds=[embed])
+    # @client.tree.command(name="allstars")
+    # async def all_stars(interaction: discord.Interaction):
+    #     #await interaction.response.send_message("Done")
+    #     allstars = commands_json.allStars()
+    #     embed = discord.Embed(title="Current All-Stars: ", description=allstars)
+    #     await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="playerstats")
     @app_commands.describe(player="Returns the season stats for a given player")
@@ -74,4 +74,9 @@ def run_discord_bot():
         embed = discord.Embed(title=f"Players with {stat.name} above {threshold}: ", description=statInfo)
         await interaction.response.send_message(embeds=[embed])
 
+    @client.tree.command(name="roster")
+    async def roster(interaction: discord.Interaction, team_name: str):
+        team_roster = commands_json.roster(team_name)
+        embed = discord.Embed(title=f"2024 NBA Roster for the {team_name}: ", description=team_roster)
+        await interaction.response.send_message(embeds=[embed])
     client.run(TOKEN)
