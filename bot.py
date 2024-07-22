@@ -61,7 +61,7 @@ def run_discord_bot():
     async def player_strengths_weakness(interaction: discord.Interaction, player: str):
         player = process.extract(player, full_names, limit=1)[0][0]
         playerInfo = commands_json.player_strength_and_weakness(player)
-        embed = discord.Embed(title=f"Player Strength and Weakness's for {player}: ", description=playerInfo)
+        embed = discord.Embed(title=f"Player Strengths and Weaknesses for {player}: ", description=playerInfo)
         await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="filterbystat", description="Find players with a stat above a certain threshold")
