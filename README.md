@@ -10,7 +10,7 @@ StatZone has a lot of capabilities and commands that you can use.
 - ```filterByStat```: Allows you to filter through the player_database based on a specific attribute and threshold. For example, if you are looking for elite passers, you can use this command to
 find all players who have a Passing rating above 90.
 - ```player_strengths_weaknesses```: Given a player, returns their strengths and their weaknesses. Especially useful to scout a draft class.
-- ```roster```: Returns the current roster of a team.
+- ```roster```: Returns a team's current roster.
 - ```allStars```: Returns the all-stars for the current year
 
 <img width="480" alt="StatZoneDemoSW" src="https://github.com/shawnmalik1/StatZone/assets/29494485/ec7db7f7-0faa-42c7-8c6c-85734c48c295">
@@ -40,4 +40,4 @@ This project is licensed under the [MIT License](./LICENSE)
 
 ## Next Steps 👀
 - Implementing trade evaluation!
-- FuzzySearch implementation
+- FuzzySearch implementation (AutoCorrect) -- **COMPLETED!**
