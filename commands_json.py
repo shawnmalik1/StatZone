@@ -1,6 +1,6 @@
 import json
-import allStars
-import findStatsByPlayer
+from thefuzz import fuzz
+from thefuzz import process
 
 
 # Retrieve JSON data from the file
@@ -39,8 +39,6 @@ def allStars() -> str:
 
 def playerStats(given_player) -> str:
     # Access and process the retrieved JSON data
-    #teams = data["teams"]
-
     for player in players:
         if player["firstName"] + " " + player['lastName'] == given_player:
             if(not player['stats']):
@@ -127,7 +125,7 @@ def player_strength_and_weakness(playerName):
             weaknessesStr += element + "\n"
 
 
-        return (f"\n **Player's Strengths: ** \n {strengthsStr}" + f"\n **Player's Weakness's: ** \n {weaknessesStr}")
+        return (f"\n **Player's Strengths: ** \n {strengthsStr}" + f"\n **Player's Weaknesses: ** \n {weaknessesStr}")
     else:
         return(f"{playerName} not found")
 
