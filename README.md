@@ -23,6 +23,8 @@ StatZone was developed using the following technologies:
 - Discord API
 - JSON functionality
 
+StatZone uses FuzzySearch implementation as an autocorrect measure to account for user error. This way, misspelling a player or team name won't impact the bot's ability to provide the user with the correct information.
+
 ### Dependencies 🤖
 
 * StatZone works with BBGM aka Basketball General Manager.
@@ -40,4 +42,4 @@ This project is licensed under the [MIT License](./LICENSE)
 
 ## Next Steps 👀
 - Implementing trade evaluation!
-- FuzzySearch implementation (AutoCorrect) -- **COMPLETED!**
+- FuzzySearch implementation -- **COMPLETED!**
