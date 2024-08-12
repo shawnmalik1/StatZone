@@ -3,7 +3,14 @@ from discord import app_commands
 from discord.ext import commands
 import responses
 import commands_json
+import json
+from thefuzz import process
 
+with open("2024 NBA League.json", "r") as file:
+    data = json.load(file)
+
+players = data["players"]
+full_names = [f"{p['firstName']} {p['lastName']}" for p in players]
 async def send_message(message, user_message):
     try:
         response = responses.handle_response(user_message)
@@ -26,7 +33,6 @@ def run_discord_bot():
             print(f'Synced {len(synced)} command(s)')
         except Exception as e:
             print(e)
-
     @client.tree.command(name="ping", description="Check if the bot is online")
     async def ping(interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
@@ -41,12 +47,14 @@ def run_discord_bot():
     @client.tree.command(name="playerstats", description="Get the season stats for a given player")
     @app_commands.describe(player="Returns the season stats for a given player")
     async def player_stats(interaction: discord.Interaction, player: str):
+        player = process.extract(player, full_names, limit=1)[0][0]
         player_stats = commands_json.playerStats(player)
         embed = discord.Embed(title=f"Player Stats for {player}: ", description=player_stats)
         await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="player_strengths_weaknesses", description="Find players strengths and weaknesses")
     async def player_strengths_weakness(interaction: discord.Interaction, player: str):
+        player = process.extract(player, full_names, limit=1)[0][0]
         playerInfo = commands_json.player_strength_and_weakness(player)
         embed = discord.Embed(title=f"Player Strength and Weakness's for {player}: ", description=playerInfo)
         await interaction.response.send_message(embeds=[embed])
