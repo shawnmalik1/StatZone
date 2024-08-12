@@ -52,6 +52,11 @@ def run_discord_bot():
         embed = discord.Embed(title=f"Player Stats for {player}: ", description=player_stats)
         await interaction.response.send_message(embeds=[embed])
 
+    @client.tree.command(name="allstars", description="Get the current all stars")
+    async def allstars(interaction: discord.Interaction):
+        allStars = commands_json.allStars()
+        embed = discord.Embed(title=f"Current All Stars: ", description=allStars)
+        await interaction.response.send_message(embeds=[embed])
     @client.tree.command(name="player_strengths_weaknesses", description="Find players strengths and weaknesses")
     async def player_strengths_weakness(interaction: discord.Interaction, player: str):
         player = process.extract(player, full_names, limit=1)[0][0]

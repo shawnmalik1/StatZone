@@ -17,7 +17,11 @@ for player in players:
 
 def allStars() -> str:
     # Access and process the retrieved JSON data
-    allstars_east = data["allStars"][-1]["teams"][0]
+    try:
+        allstars_east = data["allStars"][-1]["teams"][0]
+    except:
+        return "All Star Break has not occured yet!"
+
     east_all_stars = []
     for player in allstars_east:
         east_all_stars.append(player["name"])
