@@ -42,4 +42,4 @@ This project is licensed under the [MIT License](./LICENSE)
 
 ## Next Steps 👀
 - Implementing trade evaluation!
-- FuzzySearch implementation -- **COMPLETED!**
+- NFL Integration 🏈
