@@ -154,44 +154,47 @@ def filter_by_stat(stat, threshold):
 def roster(team_name):
     roster = []
     teamMap = {
-        "hawks": 0,
-        "celtics": 1,
-        "nets": 2,
-        "hornets": 3,
-        "bulls": 4,
-        "cavaliers": 5,
-        "mavericks": 6,
-        "nuggets": 7,
-        "pistons": 8,
-        "warriors": 9,
-        "rockets": 10,
-        "pacers": 11,
-        "clippers": 12,
-        "lakers": 13,
-        "grizzlies": 14,
-        "heat": 15,
-        "bucks": 16,
-        "timberwolves": 17,
-        "pelicans": 18,
-        "knicks": 19,
-        "thunder": 20,
-        "magic": 21,
-        "76ers": 22,
-        "suns": 23,
-        "blazers": 24,
-        "kings": 25,
-        "spurs": 26,
-        "raptors": 27,
-        "jazz": 28,
-        "wizards": 29
+        "Atlanta Hawks": 0,
+        "Boston Celtics": 1,
+        "Brooklyn Nets": 2,
+        "Charlotte Hornets": 3,
+        "Chicago Bulls": 4,
+        "Cleveland Cavaliers": 5,
+        "Dallas Mavericks": 6,
+        "Denver Nuggets": 7,
+        "Detroit Pistons": 8,
+        "Golden State Warriors": 9,
+        "Houston Rockets": 10,
+        "Indiana Pacers": 11,
+        "Los Angeles Clippers": 12,
+        "Los Angeles Lakers": 13,
+        "Memphis Grizzlies": 14,
+        "Miami Heat": 15,
+        "Milwaukee Bucks": 16,
+        "Minnesota Timberwolves": 17,
+        "New Orleans Pelicans": 18,
+        "New York Knicks": 19,
+        "Oklahoma City Thunder": 20,
+        "Orlando Magic": 21,
+        "Philadelphia 76ers": 22,
+        "Phoenix Suns": 23,
+        "Portland Trailblazers": 24,
+        "Sacramento Kings": 25,
+        "San Antonio Spurs": 26,
+        "Toronto Raptors": 27,
+        "Utah Jazz": 28,
+        "Washington Wizards": 29
     }
-    team_name = team_name.lower()
+    if team_name not in teamMap:
+        return "Team not found. Must be in city/name format (ex: Washington Wizards)."
     for player in players:
         if player['tid'] == teamMap[team_name]:
             roster.append(player['firstName'] + " " + player['lastName'])
     rosterStr = ""
+    count = 1
     for i in range(len(roster)):
-        rosterStr += roster[i] + "\n"
+        rosterStr += str(count) + ". " + roster[i] + "\n"
+        count += 1
     return rosterStr
 
 
