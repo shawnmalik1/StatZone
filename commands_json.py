@@ -1,10 +1,7 @@
 import json
-from thefuzz import fuzz
-from thefuzz import process
-
 
 # Retrieve JSON data from the file
-with open("2024 NBA League.json", "r") as file:
+with open("2025 NBA Roster.json", "r") as file:
     data = json.load(file)
 
 # Streamline Player Display & Finding
@@ -185,6 +182,9 @@ def roster(team_name):
         "Utah Jazz": 28,
         "Washington Wizards": 29
     }
+    parts = team_name.split(" ")
+    capitalized_name = " ".join([word.title() for word in parts])
+    team_name = capitalized_name
     if team_name not in teamMap:
         return "Team not found. Must be in city/name format (ex: Washington Wizards)."
     for player in players:

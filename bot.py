@@ -6,7 +6,7 @@ import commands_json
 import json
 from thefuzz import process
 
-with open("2024 NBA League.json", "r") as file:
+with open("2025 NBA Roster.json", "r") as file:
     data = json.load(file)
 
 players = data["players"]
@@ -36,13 +36,6 @@ def run_discord_bot():
     @client.tree.command(name="ping", description="Check if the bot is online")
     async def ping(interaction: discord.Interaction):
         await interaction.response.send_message("Pong!")
-
-    # @client.tree.command(name="allstars")
-    # async def all_stars(interaction: discord.Interaction):
-    #     #await interaction.response.send_message("Done")
-    #     allstars = commands_json.allStars()
-    #     embed = discord.Embed(title="Current All-Stars: ", description=allstars)
-    #     await interaction.response.send_message(embeds=[embed])
 
     @client.tree.command(name="playerstats", description="Get the season stats for a given player")
     @app_commands.describe(player="Returns the season stats for a given player")
@@ -90,6 +83,9 @@ def run_discord_bot():
     @client.tree.command(name="roster", description="Get the roster for a specific NBA team")
     async def roster(interaction: discord.Interaction, team_name: str):
         team_roster = commands_json.roster(team_name)
-        embed = discord.Embed(title=f"2024 NBA Roster for the {team_name}: ", description=team_roster)
+        parts = team_name.split(" ")
+        capitalized_name = " ".join([word.title() for word in parts])
+        team_name = capitalized_name
+        embed = discord.Embed(title=f"2025 NBA Roster for the {team_name}: ", description=team_roster)
         await interaction.response.send_message(embeds=[embed])
     client.run(TOKEN)

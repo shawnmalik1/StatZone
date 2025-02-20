@@ -1,13 +1,13 @@
 # StatZone 📈
 
-StatZone is an NBA Utility Stat bot meant to bring ease of access and statistics to Discord. Now you can look up a player's stats or strengths and weaknesses without leaving your application or server! StatZone is in its beta phases and is currently set up to work for the upcoming 2024-2025 NBA season.
+StatZone is an NBA Utility Stat bot meant to bring ease of access and statistics to Discord. Now you can look up a player's stats or strengths and weaknesses without leaving your application or server! StatZone is in its beta phases and is currently set up to work for the 2024-2025 NBA season.
 
 ## Description 🏀
 
 StatZone has a lot of capabilities and commands that you can use.
 - ```ping```: Tells you if the bot is online and functional!
 - ```playerStats```: Prints out all the stats a player has averaged through a season, including but not limited to PPG, APG, RPG, and PER.
-- ```filterByStat```: Allows you to filter through the player_database based on a specific attribute and threshold. For example, if you are looking for elite passers, you can use this command to
+- ```filterByStat```: Allows you to filter through the player database based on a specific attribute and threshold. For example, if you are looking for elite passers, you can use this command to
 find all players who have a Passing rating above 90.
 - ```player_strengths_weaknesses```: Given a player, returns their strengths and their weaknesses. Especially useful to scout a draft class.
 - ```roster```: Returns a team's current roster.
